@@ -19,7 +19,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve && node app.js",
+    "start": "node app.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
