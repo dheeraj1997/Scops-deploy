@@ -3,6 +3,7 @@ const app = express();
 
 const path = require('path');
 
+var port = process.env.PORT || 4200;
 // var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://dheeraj:dheeraj123@ds123584.mlab.com:23584/";
@@ -56,7 +57,7 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'))
 });
 
-app.listen(4200, function () {
-  console.log('App service listening on port 4200!');
+app.listen(port, function () {
+  console.log('App service listening on port ',port);
   // console.log(path.join(__dirname, '/dist/index.html'));
 });
