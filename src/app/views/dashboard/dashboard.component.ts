@@ -391,7 +391,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // generate random values for mainChart
 
-    let url = 'http://localhost:3000/balls';
+    let url = '/api/balls';
     this.http.get(url).toPromise().then(res => {
       const results = JSON.parse(res['_body']);
       console.log(typeof(results));

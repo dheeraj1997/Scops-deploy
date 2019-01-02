@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const path = require('path');
+
 // var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://dheeraj:dheeraj123@ds123584.mlab.com:23584/";
@@ -16,13 +18,12 @@ var url = "mongodb://dheeraj:dheeraj123@ds123584.mlab.com:23584/";
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,authorization,access-control-allow-origin");
-
-
   res.header("Access-Control-Allow-authorization", "*");
   next();
 });
+app.use(express.static('dist'));
 
-app.get('/balls', function (req, res) {
+app.get('/api/balls', function (req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("cricket");
@@ -50,6 +51,12 @@ app.get('/balls', function (req, res) {
   });
 });
 
-app.listen(3000, function () {
-  console.log('App service listening on port 3000!');
+app.get('/*', function(req, res) {
+  // console.log(path.join(__dirname, '/dist/index.html'));
+  res.sendFile(path.join(__dirname, '/dist/index.html'))
+});
+
+app.listen(4200, function () {
+  console.log('App service listening on port 4200!');
+  // console.log(path.join(__dirname, '/dist/index.html'));
 });
